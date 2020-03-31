@@ -11,16 +11,15 @@ A simple bot for playing RPGs over discord
 7. You're done!
 
 TODOs
-automatic saving
-finish rest of profile commands
-refreshables (long / short rest)
-voting
-roll from profile without switching profile
-show multi dice rolls results separately
-timekeeping
-dm can award xp (dm tools in general)
-
-cleanup by using types, being consistent with __, cleanup files, rethink singletons and imports (learn python lol)
-help command
+1. automatic saving
+1. finish rest of profile commands
+1. refreshables (long / short rest)
+1. voting
+1. roll from profile without switching profile
+1. show multi dice rolls results separately
+1. timekeeping
+1. dm can award xp (dm tools in general)
+1. cleanup by using types, being consistent with __, cleanup files, rethink singletons and imports (learn python lol)
+1. help command
 
 fix file opening https://stackoverflow.com/questions/12517451/automatically-creating-directories-with-file-output

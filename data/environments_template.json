@@ -1,0 +1,11 @@
+{                                                                           
+    "environments": [
+        {
+            "version": 1.0,
+            "campaign": "sample",
+            "system": "dnd5e"
+        }
+    ],
+    "default": "sample",
+    "token": "your-token-here"
+}

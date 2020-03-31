@@ -1,18 +1,17 @@
-import logging
-import profile_commands
-
+from logging import basicConfig, INFO
 from discord.ext import commands
-from roll_command import parseRollString
-from dice_env import envManager
+from dice.logic.env import token
+from dice.commands.roll_commands import parseRollString
+from dice.commands.profile_commands import getRoll, setCommand, addCommand, listCommand, saveCommand
 
-logging.basicConfig(level=logging.INFO)
+basicConfig(level=INFO)
 
 bot = commands.Bot(command_prefix='/')
 
 @bot.command()
 async def roll(ctx, *, roll):
     try:
-        rollString = profile_commands.getRoll(ctx, roll)
+        rollString = getRoll(ctx, roll)
     except Exception as err:
         rollString = roll
     await ctx.send(parseRollString(ctx, rollString))
@@ -20,23 +19,23 @@ async def roll(ctx, *, roll):
 @bot.command()
 async def set(ctx, *, args):
     try:
-        await ctx.send(profile_commands.setCommand(ctx, args))
+        await ctx.send(setCommand(ctx, args))
     except Exception as err:
         await ctx.send(str(err))
 
 @bot.command()
 async def add(ctx, *, args):
     try:
-        await ctx.send(profile_commands.addCommand(ctx, args))
+        await ctx.send(addCommand(ctx, args))
     except Exception as err:
         await ctx.send(str(err))
 
 @bot.command()
-async def save(ctx):
-    profile_commands.saveCommand()
+async def list(ctx, *, args):
+    await ctx.send(listCommand(ctx, args))
 
 @bot.command()
-async def list(ctx, *, args):
-    await ctx.send(profile_commands.listCommand(ctx, args))
+async def save(ctx):
+    saveCommand()
 
-bot.run(envManager.getToken())
+bot.run(token())

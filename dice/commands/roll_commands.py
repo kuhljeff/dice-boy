@@ -1,4 +1,4 @@
-from dice_parser import parse
+from dice.logic.parser import parse
 from random import randrange
 
 def randomCritSuccessString():
@@ -23,7 +23,7 @@ def randomCritFailString():
     return mockeries[randrange(0, len(mockeries))]
 
 
-def parseRollString(ctx, rollString) -> str:
+def parseRollString(ctx, rollString):
     try:
         total, rolls = parse(rollString)
     except:

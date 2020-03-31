@@ -1,35 +1,5 @@
-from dice_env import envManager
+from dice.logic.env import system, campaign 
 from json import loads, dumps
-
-class ProfileManager:
-
-    def __init__(self, filepath):
-        try:
-            self.filepath = filepath
-            f = open(filepath, "r")
-            json = loads(f.read())
-            f.close()
-            self.profileSets = list(map(ProfileSet, json))
-        except:
-            self.profileSets = []
-
-    def __hasProfileSet(self, playerName):
-        return next((s for s in self.profileSets if s.json["player"] == playerName.lower()), None) is not None
-
-    def getProfileSet(self, playerName):
-        return next(s for s in self.profileSets if s.json["player"] == playerName.lower())
-
-    def addProfileSet(self, playerName):
-        if self.__hasProfileSet(playerName):
-            raise ValueError("player already has profile set")
-        self.profileSets.append(ProfileSet.newProfile(playerName))
-
-    def writeToJson(self):
-        jsonString = dumps(list(map(lambda p : p.json, self.profileSets)), sort_keys = True, indent = 4)
-        f = open(self.filepath, "w")
-        f.write(jsonString)
-        f.close()
-
 
 class ProfileSet:
 
@@ -98,9 +68,9 @@ class ProfileSet:
         self.json["profiles"].append({
             "id": profileId.lower(),
             "metadata": {
-                "system": envManager.getSystem(),
+                "system": system(),
                 "version": 1.0,
-                "campaign": envManager.getCampaign()
+                "campaign": campaign()
             },
             "rolls": []
         })
@@ -135,5 +105,29 @@ class ProfileSet:
     def getAllProfiles(self):
         return self.json["profiles"]
 
-profileManager = ProfileManager("data/player_profiles.json")
+try:
+    filepath = "data/player_profiles.json"
+    f = open(filepath, "r")
+    json = loads(f.read())
+    f.close()
+    profileSets = list(map(ProfileSet, json))
+except:
+    profileSets = []
+
+def hasProfileSet(playerName):
+    return next((s for s in profileSets if s.json["player"] == playerName.lower()), None) is not None
+
+def getProfileSet(playerName):
+    return next(s for s in profileSets if s.json["player"] == playerName.lower())
+
+def addProfileSet(playerName):
+    if hasProfileSet(playerName):
+        raise ValueError("player already has profile set")
+    profileSets.append(ProfileSet.newProfile(playerName))
+
+def writeToJson():
+    jsonString = dumps(list(map(lambda p : p.json, profileSets)), sort_keys = True, indent = 4)
+    f = open(filepath, "w")
+    f.write(jsonString)
+    f.close()
 

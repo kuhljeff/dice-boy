@@ -1,4 +1,5 @@
 from dice.logic.env import system, campaign 
+from dice.utils.file_utility import openFile, writeToFile
 from json import loads, dumps
 
 class ProfileSet:
@@ -107,9 +108,7 @@ class ProfileSet:
 
 try:
     filepath = "data/player_profiles.json"
-    f = open(filepath, "r")
-    json = loads(f.read())
-    f.close()
+    json = loads(openFile(filepath))
     profileSets = list(map(ProfileSet, json))
 except:
     profileSets = []
@@ -127,7 +126,4 @@ def addProfileSet(playerName):
 
 def writeToJson():
     jsonString = dumps(list(map(lambda p : p.json, profileSets)), sort_keys = True, indent = 4)
-    f = open(filepath, "w")
-    f.write(jsonString)
-    f.close()
-
+    writeToFile(filepath, jsonString)

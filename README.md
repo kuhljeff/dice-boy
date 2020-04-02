@@ -19,6 +19,5 @@ TODOs
 1. show multi dice rolls results separately
 1. timekeeping
 1. dm can award xp (dm tools in general)
-1. cleanup by using types, being consistent with __, cleanup files, rethink singletons and imports (learn python lol)
 1. help command
-1. fix file opening https://stackoverflow.com/questions/12517451/automatically-creating-directories-with-file-output
+1. Cleanup this readme lol

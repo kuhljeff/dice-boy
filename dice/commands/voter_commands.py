@@ -8,20 +8,21 @@ async def voteCommand(ctx, args):
     except:
         pass
     if len(args) == 0:
+        await ctx.send("Cannot vote with no arguments")
         return
     if args[0] == "make":
-        await makeVote(ctx, args[1:]) 
+        await handleMakeCommand(ctx, args[1:]) 
     elif args[0] == "add":
-        await addToVote(ctx, args[1:])
+        await handleAddCommand(ctx, args[1:])
     elif args[0] == "close":
         try:
             vote = closeVote(args[1])
         except:
-            return
+            await ctx.send("Cannot close vote.")
     else:
-        await castVote(ctx, args) 
+        await handleVoteForCommand(ctx, args) 
 
-async def makeVote(ctx, args):
+async def handleMakeCommand(ctx, args):
     try:
         vote = addVote(args[0])
         for arg in args[1:]:
@@ -31,7 +32,7 @@ async def makeVote(ctx, args):
     except:
         await ctx.send("Cannot make vote.")
 
-async def addToVote(ctx, args):
+async def handleAddCommand(ctx, args):
     try:
         name = args[args.index("to") + 1]
     except:
@@ -45,9 +46,9 @@ async def addToVote(ctx, args):
             voteString = writeVote(vote)
             await vote.message.edit(content = voteString)
     except:
-        await ctx.send("Cannot add options to vote")
+        await ctx.send("Cannot add options to vote.")
 
-async def castVote(ctx, args):
+async def handleVoteForCommand(ctx, args):
     try:
         if args[0] == "for":
             name = args[2] if len(args) > 2 else None
@@ -58,7 +59,7 @@ async def castVote(ctx, args):
         vote = voteForOption(name, option, ctx.message.author.name)
         voteString = writeVote(vote)
         await vote.message.edit(content = voteString)
-    except Exception as err:
+    except:
         await ctx.send("Cannot vote for option.") 
 
 def writeVote(vote):

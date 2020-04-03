@@ -1,5 +1,3 @@
-from asyncio import sleep
-
 # TODO add persistence of votes
 
 class Vote:

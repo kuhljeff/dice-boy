@@ -3,6 +3,7 @@ from discord.ext import commands
 from dice.logic.env import token
 from dice.commands.roll_commands import parseRollString
 from dice.commands.profile_commands import getRoll, setCommand, addCommand, listCommand, saveCommand
+from dice.commands.voter_commands import voteCommand
 
 basicConfig(level=INFO)
 
@@ -37,5 +38,9 @@ async def list(ctx, *, args):
 @bot.command()
 async def save(ctx):
     saveCommand()
+
+@bot.command()
+async def vote(ctx, *args): 
+    await voteCommand(ctx, args)
 
 bot.run(token())

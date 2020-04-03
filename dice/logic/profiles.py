@@ -4,7 +4,7 @@ from json import loads, dumps
 
 class ProfileSet:
 
-    def __init__(self, json: dict):
+    def __init__(self, json):
         self.json = json
         self.currentProfile = json["default"]
 

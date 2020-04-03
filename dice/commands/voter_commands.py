@@ -15,10 +15,7 @@ async def voteCommand(ctx, args):
     elif args[0] == "add":
         await handleAddCommand(ctx, args[1:])
     elif args[0] == "close":
-        try:
-            vote = closeVote(args[1])
-        except:
-            await ctx.send("Cannot close vote.")
+        await handleCloseCommand(ctx, args[1:])
     else:
         await handleVoteForCommand(ctx, args) 
 
@@ -45,6 +42,8 @@ async def handleAddCommand(ctx, args):
                 vote.addOption(option)
             voteString = writeVote(vote)
             await vote.message.edit(content = voteString)
+        else:
+            await ctx.send("Could not find vote.")
     except:
         await ctx.send("Cannot add options to vote.")
 
@@ -61,6 +60,12 @@ async def handleVoteForCommand(ctx, args):
         await vote.message.edit(content = voteString)
     except:
         await ctx.send("Cannot vote for option.") 
+
+async def handleCloseCommand(ctx, args):
+    try:
+        vote = closeVote(args[1])
+    except:
+        await ctx.send("Cannot close vote.")
 
 def writeVote(vote):
     optionString = ""

@@ -1,8 +1,8 @@
 from dice.logic.profiles import getProfileSet, addProfileSet, writeToJson 
-from discord.abc import PrivateChannel
+from dice.utils.command_utils import validatePrivateContext, getObjAndArgs
 
 def setCommand(ctx, command):
-    validateContext(ctx)
+    validatePrivateContext(ctx)
     profileSet = getOrMakeProfileSet(ctx)
     obj, args = getObjAndArgs(command)
     if obj == "profile":
@@ -15,7 +15,7 @@ def setCommand(ctx, command):
         return "You cannot set " + obj
 
 def addCommand(ctx, command):
-    validateContext(ctx)
+    validatePrivateContext(ctx)
     profileSet = getOrMakeProfileSet(ctx)    
     obj, args = getObjAndArgs(command)
     if obj == "roll":
@@ -33,7 +33,7 @@ def getRoll(ctx, rollString):
     return profileSet.getRoll(rollString)["roll"]
 
 def listCommand(ctx, command):
-    validateContext(ctx)
+    validatePrivateContext(ctx)
     profileSet = getOrMakeProfileSet(ctx)
     if command == "profile" or command == "profiles":
         profiles = profileSet.getAllProfiles()
@@ -56,19 +56,15 @@ def mapProfileId(profile, currentProfile):
     return profileId
 
 def renameCommand(ctx, command):
-    validateContext(ctx)
+    validatePrivateContext(ctx)
     profileSet = getOrMakeProfileSet(ctx)
 
 def deleteCommand(ctx, command):
-    validateContext(ctx)
+    validatePrivateContext(ctx)
     profileSet = getOrMakeProfileSet(ctx)
 
 def saveCommand():
     writeToJson()
-
-def validateContext(ctx):
-    if not isinstance(ctx.message.channel, PrivateChannel):
-        raise ValueError("That doesn't work here...")
 
 def getOrMakeProfileSet(ctx):
     try:
@@ -76,10 +72,4 @@ def getOrMakeProfileSet(ctx):
     except:
         addProfileSet(ctx.message.author.name)
         return getProfileSet(ctx.message.author.name)
-
-def getObjAndArgs(command):
-    try:
-        return command.split(None, 1)
-    except:
-        raise ValueError("I can't understand " + command)
 

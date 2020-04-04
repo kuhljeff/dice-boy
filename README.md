@@ -11,6 +11,7 @@ A simple bot for playing RPGs over discord
 7. You're done!
 
 TODOs
+1. mock out discord.py dependencies for testing
 1. automatic saving
 1. finish rest of profile commands
 1. refreshables (long / short rest)

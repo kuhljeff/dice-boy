@@ -1,5 +1,5 @@
 from dice.logic.env import system, campaign 
-from dice.utils.file_utility import openFile, writeToFile
+from dice.utils.file_utils import openFile, writeToFile
 from json import loads, dumps
 
 class ProfileSet:

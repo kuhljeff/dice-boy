@@ -1,4 +1,4 @@
-from dice.utils.file_utility import openFile
+from dice.utils.file_utils import openFile
 from json import loads
 
 # TODO fill out this class to have a command interface

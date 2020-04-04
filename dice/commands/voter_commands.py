@@ -63,7 +63,8 @@ async def handleVoteForCommand(ctx, args):
 
 async def handleCloseCommand(ctx, args):
     try:
-        vote = closeVote(args[1])
+        name = args[0] if len(args) > 0 else None
+        vote = closeVote(name)
     except:
         await ctx.send("Cannot close vote.")
 

@@ -19,4 +19,5 @@ TODOs
 1. show multi dice rolls results separately
 1. timekeeping
 1. dm can award xp (dm tools in general)
+1. mongo db
 1. Cleanup this readme lol

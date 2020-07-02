@@ -11,13 +11,13 @@ A simple bot for playing RPGs over discord
 7. You're done!
 
 TODOs
+1. mock out discord.py dependencies for testing
 1. automatic saving
 1. finish rest of profile commands
 1. refreshables (long / short rest)
-1. voting
 1. roll from profile without switching profile
 1. show multi dice rolls results separately
 1. timekeeping
 1. dm can award xp (dm tools in general)
-1. help command
+1. mongo db
 1. Cleanup this readme lol

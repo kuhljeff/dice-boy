@@ -1,4 +1,5 @@
 from dice.logic.parser import parse
+from dice.commands.profile_commands import getRoll
 from random import randrange
 
 def randomCritSuccessString():
@@ -22,23 +23,29 @@ def randomCritFailString():
     ]
     return mockeries[randrange(0, len(mockeries))]
 
+def mapNameToRoll(ctx, rollString):
+    try:
+        return getRoll(ctx, rollString)
+    except Exception as err:
+        return rollString
 
 def parseRollString(ctx, rollString):
     try:
-        total, rolls = parse(rollString)
+        total, rolls = parse(rollString, lambda r : mapNameToRoll(ctx, r))
     except:
         return "Sorry, that is not a valid roll!"
     firstRoll = rolls.pop(0)
-    result = "You rolled " + str(total) + "! (" + str(firstRoll)
+    result = str(total) + " (" + str(firstRoll)
     for roll in rolls:
         if roll < 0:
             result += " - " + str(roll * -1)
         else:
             result += " + " + str(roll)
     result += ")"
-    if "1d20" in rollString:
-        if firstRoll == 20:
-            return randomCritSuccessString().format(ctx.message) + " " + result
-        elif firstRoll == 1:
-            return randomCritFailString().format(ctx.message) + " " + result
-    return "{.author.display_name}! ".format(ctx.message) + result
+#    if "1d20" in rollString:
+#        if firstRoll == 20:
+#            return randomCritSuccessString().format(ctx.message) + " " + result
+#        elif firstRoll == 1:
+#            return randomCritFailString().format(ctx.message) + " " + result
+    return "{.author.display_name} => ".format(ctx.message) + result
+

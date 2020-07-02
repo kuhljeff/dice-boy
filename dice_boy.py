@@ -11,13 +11,20 @@ basicConfig(level=INFO)
 bot = commands.Bot(command_prefix='/')
 bot.remove_command("help")
 
+async def doRoll(ctx, roll):
+    #try:
+    #    rollString = getRoll(ctx, roll)
+    #except Exception as err:
+    #    rollString = roll
+    await ctx.send(parseRollString(ctx, roll))
+
 @bot.command(help_command = None)
 async def roll(ctx, *, roll):
-    try:
-        rollString = getRoll(ctx, roll)
-    except Exception as err:
-        rollString = roll
-    await ctx.send(parseRollString(ctx, rollString))
+    await doRoll(ctx, roll)
+
+@bot.command(help_command = None)
+async def r(ctx, *, roll):
+    await doRoll(ctx, roll)
 
 @bot.command(help_command = None)
 async def set(ctx, *, args):

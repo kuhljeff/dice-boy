@@ -1,4 +1,4 @@
-from re import compile
+import re
 from random import randint
 
 class BaseComponent:
@@ -48,12 +48,24 @@ def parseSingle(rollString) -> "BaseComponent":
             roll.die += c
     return roll
 
-def parse(rollString): 
-    rollRegex = compile(r"\b(\d+\s*[dD]\s*\d+|\d+)\b")
-    opRegex = compile(r"\+|\-")
-    rolls = list(map(parseSingle, rollRegex.findall(rollString)))
-    ops = opRegex.findall(rollString)
+def parse(rollString, nameMap): 
+    components = re.findall(r"\w+|\+|\-", rollString)
+    ops = []
+    rolls = []
+    decipheredRollString = ""
+    for component in components:
+        if component == "+" or component == "-":
+            decipheredRollString += component
+        else:
+            decipheredRollString += nameMap(component)
+    components = re.findall(r"\w+|\+|\-", decipheredRollString)
+    for component in components:
+        if component == "+" or component == "-":
+            ops.append(component)
+        else:
+            rolls.append(parseSingle(component))
     if len(rolls) != len(ops) + 1:
+        print(len(rolls) + " " + len(ops))
         raise ValueError("Wrong number of args")
     first = rolls.pop(0)
     total, individuals = first.evaluate()

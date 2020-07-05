@@ -1,0 +1,11 @@
+{                                                                           
+    "environments": [
+        {
+            "version": 1.0,
+            "campaign": "Kingmaker",
+            "system": "PfRPG"
+        }
+    ],
+    "default": "Kingmaker",
+    "token": "NzI2MTU0NzkxNTExNjU0NDQ0.XvZQfA.qcimK3JYwXPIwtqRHTclZPbOcVk"
+}

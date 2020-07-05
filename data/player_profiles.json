@@ -1,0 +1,117 @@
+[
+    {
+        "default": "sassy",
+        "player": "kaboom300",
+        "profiles": [
+            {
+                "id": "default",
+                "metadata": {
+                    "campaign": "Kingmaker",
+                    "system": "PfRPG",
+                    "version": 1.0
+                },
+                "rolls": []
+            },
+            {
+                "id": "sassy",
+                "metadata": {
+                    "campaign": "Kingmaker",
+                    "system": "PfRPG",
+                    "version": 1.0
+                },
+                "rolls": [
+                    {
+                        "id": "stealth",
+                        "roll": "1d20+17"
+                    },
+                    {
+                        "id": "perception",
+                        "roll": "1d20+5"
+                    },
+                    {
+                        "id": "knowledge_arcana",
+                        "roll": "1d20+8"
+                    },
+                    {
+                        "id": "fortitude",
+                        "roll": "1d20+2"
+                    },
+                    {
+                        "id": "reflex",
+                        "roll": "1d20+3"
+                    },
+                    {
+                        "id": "will",
+                        "roll": "1d20+6"
+                    },
+                    {
+                        "id": "initiative",
+                        "roll": "1d20+1"
+                    },
+                    {
+                        "id": "knowledge_nature",
+                        "roll": "1d20+8"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "default": "default",
+        "player": "robinhood",
+        "profiles": [
+            {
+                "id": "default",
+                "metadata": {
+                    "campaign": "Kingmaker",
+                    "system": "PfRPG",
+                    "version": 1.0
+                },
+                "rolls": []
+            }
+        ]
+    },
+    {
+        "default": "default",
+        "player": "girlwithglasses",
+        "profiles": [
+            {
+                "id": "default",
+                "metadata": {
+                    "campaign": "Kingmaker",
+                    "system": "PfRPG",
+                    "version": 1.0
+                },
+                "rolls": [
+                    {
+                        "id": "perception",
+                        "roll": "1d20+5"
+                    },
+                    {
+                        "id": "dexterity",
+                        "roll": "1d20+6"
+                    },
+                    {
+                        "id": "stealth",
+                        "roll": "1d20+6"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "default": "default",
+        "player": "bug_is_awesome13",
+        "profiles": [
+            {
+                "id": "default",
+                "metadata": {
+                    "campaign": "Kingmaker",
+                    "system": "PfRPG",
+                    "version": 1.0
+                },
+                "rolls": []
+            }
+        ]
+    }
+]
